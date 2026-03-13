@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  overflow: hidden;
+}
+
+.hud-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 8px;
+  cursor: grab;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hud-dot--green {
+  background-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.hud-dot--red {
+  background-color: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+  animation: pulse-red 1.5s infinite;
+}
+
+.hud-dot--yellow {
+  background-color: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.7);
+  animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
+  50%      { box-shadow: 0 0 20px rgba(239, 68, 68, 1.0); }
+}
+
+@keyframes pulse-yellow {
+  0%, 100% { box-shadow: 0 0 10px rgba(234, 179, 8, 0.7); }
+  50%      { box-shadow: 0 0 16px rgba(234, 179, 8, 0.9); }
+}
