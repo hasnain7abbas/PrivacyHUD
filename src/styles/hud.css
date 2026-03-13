@@ -4,43 +4,81 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   background: transparent;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.hud-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
 }
 
 .hud-dot {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  margin: 8px;
   cursor: grab;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, box-shadow, opacity;
 }
 
+/* ── Idle: calm green ── */
 .hud-dot--green {
   background-color: #22c55e;
-  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
 }
 
+/* ── Mic active: urgent red blink ── */
 .hud-dot--red {
   background-color: #ef4444;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
-  animation: pulse-red 1.5s infinite;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+  animation: blink-red 1s infinite ease-in-out;
 }
 
+/* ── Camera only: amber pulse ── */
 .hud-dot--yellow {
-  background-color: #eab308;
-  box-shadow: 0 0 10px rgba(234, 179, 8, 0.7);
-  animation: pulse-yellow 2s infinite;
+  background-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
+  animation: blink-yellow 1.3s infinite ease-in-out;
 }
 
-@keyframes pulse-red {
-  0%, 100% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
-  50%      { box-shadow: 0 0 20px rgba(239, 68, 68, 1.0); }
+@keyframes blink-red {
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(239, 68, 68, 1), 0 0 40px rgba(239, 68, 68, 0.3);
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
 }
 
-@keyframes pulse-yellow {
-  0%, 100% { box-shadow: 0 0 10px rgba(234, 179, 8, 0.7); }
-  50%      { box-shadow: 0 0 16px rgba(234, 179, 8, 0.9); }
+@keyframes blink-yellow {
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.9), 0 0 34px rgba(245, 158, 11, 0.25);
+    transform: scale(1.12);
+    opacity: 0.85;
+  }
 }
